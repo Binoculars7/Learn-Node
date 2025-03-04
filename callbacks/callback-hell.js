@@ -7,10 +7,20 @@ fs.readFile('input.txt', 'utf8', (err, data)=>{
     }
     const modifyFileData = data.toUpperCase();
     fs.writeFile('output.txt', modifyFileData, (err)=>{
-        console.error('Error writing file', err);
-        return;
+        if(err){
+            console.error('Error writing file', err);
+        return; 
+        }    
+        console.log('data written to the new file');
+    }) 
+
+    fs.readFile('output.txt', 'utf8', (err, data)=>{
+        if(err){
+            console.error('Error reading file', err);
+            return;
+        }
+        console.log(data);
     })
-    console.log('data written to the new file');
 
 
 })
